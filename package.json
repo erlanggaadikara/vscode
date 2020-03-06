@@ -1,7 +1,8 @@
 {
-  "name": "code-oss-dev",
+  "name": "cactiva",
   "version": "1.44.0",
   "distro": "25a85963f9a02a91afefd34ed1992872c800473a",
+  "productName":"Cactiva - OSS Dev",
   "author": {
     "name": "Microsoft Corporation"
   },
@@ -30,7 +31,10 @@
     "strict-function-types-watch": "tsc --watch -p src/tsconfig.json --noEmit --strictFunctionTypes",
     "update-distro": "node build/npm/update-distro.js",
     "web": "node scripts/code-web.js",
-    "eslint": "eslint -c .eslintrc.json --rulesdir ./build/lib/eslint --ext .ts --ext .js ./src/vs ./extensions"
+    "eslint": "eslint -c .eslintrc.json --rulesdir ./build/lib/eslint --ext .ts --ext .js ./src/vs ./extensions",
+    "package-win": "electron-packager . Cactiva --overwrite --asar --platform=win32 --arch=x64 --icon=src/assets/cactiva.ico --no-prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Cactiva - OSS Dev\"",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/cactiva.icns --prune=true --out=release-builds-mac",
+    "package-linux": "electron-packager . Cactiva --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/cactiva.png --prune=true --out=release-builds-linux"
   },
   "dependencies": {
     "applicationinsights": "1.0.8",
@@ -97,6 +101,7 @@
     "css-loader": "^3.2.0",
     "debounce": "^1.0.0",
     "electron": "7.1.11",
+    "electron-packager": "^14.2.1",
     "eslint": "6.8.0",
     "eslint-plugin-jsdoc": "^19.1.0",
     "event-stream": "3.3.4",
