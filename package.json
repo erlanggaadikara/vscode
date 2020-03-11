@@ -2,18 +2,18 @@
   "name": "cactiva",
   "version": "1.44.0",
   "distro": "25a85963f9a02a91afefd34ed1992872c800473a",
-  "productName":"Cactiva - OSS Dev",
+  "productName": "Cactiva - OSS Dev",
   "author": {
     "name": "Microsoft Corporation"
   },
   "license": "MIT",
-  "main": "./out/main",
+  "main": "./out/main.js",
   "private": true,
   "scripts": {
     "test": "mocha",
     "test-browser": "node test/unit/browser/index.js",
     "preinstall": "node build/npm/preinstall.js",
-    "postinstall": "node build/npm/postinstall.js",
+    "postinstall": "electron-builder install-app-deps",
     "compile": "gulp compile --max_old_space_size=4095",
     "watch": "gulp watch --max_old_space_size=4095",
     "watch-client": "gulp watch-client --max_old_space_size=4095",
@@ -32,9 +32,71 @@
     "update-distro": "node build/npm/update-distro.js",
     "web": "node scripts/code-web.js",
     "eslint": "eslint -c .eslintrc.json --rulesdir ./build/lib/eslint --ext .ts --ext .js ./src/vs ./extensions",
-    "package-win": "electron-packager . Cactiva --overwrite --asar --platform=win32 --arch=x64 --icon=src/assets/cactiva.ico --no-prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Cactiva - OSS Dev\"",
+    "package-win": "electron-packager . Cactiva --platform=win32 --arch=x64 --prune=true --icon=src/assets/cactiva.ico --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Cactiva - OSS Dev\"",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/cactiva.icns --prune=true --out=release-builds-mac",
-    "package-linux": "electron-packager . Cactiva --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/cactiva.png --prune=true --out=release-builds-linux"
+    "package-linux": "electron-packager . Cactiva --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/cactiva.png --prune=true --out=release-builds-linux",
+    "deb64": " electron-installer-debian --src dist/app-linux-x64/ --dest dist/installers/ --arch amd64",
+    "win32": "electron-installer-windows --src release-builds/Cactiva-win32-x64/ --dest release-builds/installers/  --options.description=\"Cactiva Description\"",
+    "rpm": "",
+    "dgm": "",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win --publish always"
+  },
+  "build": {
+    "appId": "com.cactiva.app",
+    "asar":false,
+    "productName": "Cactiva",
+    "copyright": "Copyright © 2020 Cactiva",
+    "detectUpdateChannel": true,
+    "generateUpdatesFilesForAllChannels": true,
+    "files":[
+      "extensions",
+      "out",
+      "resources",
+      "package.json",
+      "product.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "icon": "src/assets/cactiva.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Development"
+    },
+    "win": {
+      "target": "msi",
+      "icon": "src/assets/cactiva.ico",
+      "publish": {
+        "provider":"github",
+        "owner":"erlanggaadikara",
+        "repo":"release",
+        "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
+        "releaseType":"release"
+      }
+    }
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/microsoft/vscode.git"
   },
   "dependencies": {
     "applicationinsights": "1.0.8",
@@ -48,6 +110,7 @@
     "native-is-elevated": "0.4.1",
     "native-keymap": "2.1.1",
     "native-watchdog": "1.3.0",
+    "node-abi": "^2.15.0",
     "node-pty": "^0.10.0-beta2",
     "onigasm-umd": "2.2.5",
     "semver-umd": "^5.5.5",
@@ -101,6 +164,9 @@
     "css-loader": "^3.2.0",
     "debounce": "^1.0.0",
     "electron": "7.1.11",
+    "electron-builder": "^22.4.0",
+    "electron-builder-squirrel-windows": "^22.4.0",
+    "electron-installer-windows": "^3.0.0",
     "electron-packager": "^14.2.1",
     "eslint": "6.8.0",
     "eslint-plugin-jsdoc": "^19.1.0",
@@ -168,10 +234,6 @@
     "webpack-cli": "^3.3.8",
     "webpack-stream": "^5.1.1",
     "yaserver": "^0.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode.git"
   },
   "bugs": {
     "url": "https://github.com/Microsoft/vscode/issues"
