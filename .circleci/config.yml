@@ -27,14 +27,14 @@ jobs:
                 path: /root/project/build/linux
   
   build_windows:
-    executor: win/default
+    executor: windows
     steps:
       - checkout
       - run: 
           command: npm --add-python-to-path install --global --production windows-build-tools --vs2015
           shell: powershell.exe
       - run: 
-          command: yarn -ErrorAction Continue
+          command: yarn -ErrorAction SilentlyContinue
           shell: powershell.exe
       - run: 
           command: yarn add electron-builder --dev
