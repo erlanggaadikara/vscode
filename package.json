@@ -34,7 +34,7 @@
     "eslint": "eslint -c .eslintrc.json --rulesdir ./build/lib/eslint --ext .ts --ext .js ./src/vs ./extensions",
     "package-win": "electron-packager . Cactiva --overwrite --asar --platform=win32 --arch=x64 --icon=src/assets/cactiva.ico --no-prune --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Cactiva - OSS Dev\"",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/cactiva.icns --prune=true --out=release-builds-mac",
-    "package-linux": "electron-packager . Cactiva --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/cactiva.png --prune=true --out=release-builds-linux"
+    "package-linux": "electron-packager . Cactiva --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/cactiva.png --prune=true --out=release-builds-linux",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --publish always"
   },
