@@ -34,7 +34,7 @@ jobs:
           command: npm --add-python-to-path install --global --production windows-build-tools --vs2015
           shell: powershell.exe
       - run: 
-          command:-ErrorAction SilentlyContinue yarn
+          command: -ErrorAction SilentlyContinue yarn
           shell: powershell.exe
       - run: 
           command: yarn add electron-builder --dev
