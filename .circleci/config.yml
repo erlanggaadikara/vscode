@@ -27,7 +27,7 @@ jobs:
                 path: /root/project/build/linux
   
   build_windows:
-    executor: windows
+    executor: win/default
     steps:
       - checkout
       - run: 
