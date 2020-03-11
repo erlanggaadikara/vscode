@@ -38,72 +38,72 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --publish always"
   },
-   "build": {
-      "appId": "com.cactiva.app",
-      "asar":true,
-      "productName": "Cactiva",
-      "copyright": "Copyright © 2020 Cactiva",
-      "detectUpdateChannel": true,
-      "generateUpdatesFilesForAllChannels": true,
-      "files":[
-        "extensions",
-        "out",
-        "resources",
-        "package.json",
-        "product.json"
-      ],
-      "mac": {
-        "category": "public.app-category.developer-tools",
-         "publish": {
-          "provider":"github",
-          "owner":"erlanggaadikara",
-          "repo":"vscode",
-          "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
-          "releaseType":"release"
-        }
-      },
-      "dmg": {
-        "contents": [
-          {
-            "x": 110,
-            "y": 150
-          },
-          {
-            "x": 240,
-            "y": 150,
-            "type": "link",
-            "path": "/Applications"
-          }
-        ],
-        "icon": "src/assets/cactiva.icns"
-      },
-      "linux": {
-        "target": [
-          "AppImage",
-          "deb",
-          "rpm"
-        ],
-        "category": "Development",
-        "publish": {
-          "provider":"github",
-          "owner":"erlanggaadikara",
-          "repo":"vscode",
-          "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
-          "releaseType":"release"
-        }
-      },
-      "win": {
-        "target": "msi",
-        "icon": "src/assets/cactiva.ico",
-        "publish": {
-          "provider":"github",
-          "owner":"erlanggaadikara",
-          "repo":"vscode",
-          "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
-          "releaseType":"release"
-        }
+  "build": {
+    "appId": "com.cactiva.app",
+    "asar":true,
+    "productName": "Cactiva",
+    "copyright": "Copyright © 2020 Cactiva",
+    "detectUpdateChannel": true,
+    "generateUpdatesFilesForAllChannels": true,
+    "files":[
+      "extensions",
+      "out",
+      "resources",
+      "package.json",
+      "product.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+       "publish": {
+        "provider":"github",
+        "owner":"erlanggaadikara",
+        "repo":"vscode",
+        "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
+        "releaseType":"release"
       }
     },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "icon": "src/assets/cactiva.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Development",
+      "publish": {
+        "provider":"github",
+        "owner":"erlanggaadikara",
+        "repo":"vscode",
+        "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
+        "releaseType":"release"
+      }
+    },
+    "win": {
+      "target": "msi",
+      "icon": "src/assets/cactiva.ico",
+      "publish": {
+        "provider":"github",
+        "owner":"erlanggaadikara",
+        "repo":"vscode",
+        "token":"76a37eb096d4ed98fc3598b53929f92a76e2e5e0",
+        "releaseType":"release"
+      }
+    }
+  },
   "dependencies": {
     "applicationinsights": "1.0.8",
     "chokidar": "3.2.3",
