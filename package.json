@@ -13,7 +13,7 @@
     "test": "mocha",
     "test-browser": "node test/unit/browser/index.js",
     "preinstall": "node build/npm/preinstall.js",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "node build/npm/postinstall.js",
     "compile": "gulp compile --max_old_space_size=4095",
     "watch": "gulp watch --max_old_space_size=4095",
     "watch-client": "gulp watch-client --max_old_space_size=4095",
